@@ -1,12 +1,65 @@
 ﻿// SplitNumlist.cpp : このファイルには 'main' 関数が含まれています。プログラム実行の開始と終了がそこで行われます。
 //
 
-#include "pch.h"
-#include <iostream>
+#include <stdio.h>
 
-int main()
+#define SPLIT_MAX 100
+
+void splitArray(int[], int[], int[]);
+void showSplitArray(int[] , int[] , int[]);
+
+int main(void)
 {
-    std::cout << "Hello World!\n"; 
+	int inputNumList[] = {5, 6, 7, -1};
+	int compNumList[] = {1, 2, 3, 0, 2, 3, 4, 0, 5, 0, 5, 6, 7, -1};
+
+	int beginIndex[SPLIT_MAX];
+	int numCountBySplit[SPLIT_MAX];
+
+	for (int i = 0; i < SPLIT_MAX; i += 1) {
+		beginIndex[i] = -1;
+		numCountBySplit[i] = -1;
+	}
+
+    printf("Hello World!\n"); 
+	splitArray(compNumList, beginIndex, numCountBySplit);
+	showSplitArray(compNumList, beginIndex, numCountBySplit);
+}
+
+void splitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
+{
+	int current = 0;
+	int index = 0;
+	int count = 0;
+
+	for (int i = 0; compNumList[i] != -1; i += 1) {
+		if (count != 0 && compNumList[i] == 0) {
+			beginIndex[current] = index;
+			numCountBySplit[current] = count;
+
+			count = 0;
+			current += 1;
+			index = i + 1;
+		}
+		else {
+			count += 1;
+		}
+	}
+
+	if (count > 1) {
+		beginIndex[current] = index;
+		numCountBySplit[current] = count;
+	}
+}
+
+void showSplitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
+{
+	for (int i = 0; beginIndex[i] != -1; i += 1) {
+		for (int j = 0; j < numCountBySplit[i]; j += 1) {
+			printf("%d ", compNumList[beginIndex[i] + j]);
+		}
+		printf("\n");
+	}
 }
 
 // プログラムの実行: Ctrl + F5 または [デバッグ] > [デバッグなしで開始] メニュー
