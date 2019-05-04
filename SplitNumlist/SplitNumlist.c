@@ -102,6 +102,7 @@ void splitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
 void showSplitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
 {
 	for (int i = 0; beginIndex[i] != -1; i += 1) {
+		printf("line no %d : ", i);
 		for (int j = 0; j < numCountBySplit[i]; j += 1) {
 			printf("%d ", compNumList[beginIndex[i] + j]);
 		}
