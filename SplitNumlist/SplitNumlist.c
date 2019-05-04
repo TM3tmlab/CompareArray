@@ -35,6 +35,15 @@ int main(void)
 	splitArray(compNumList, beginIndex, numCountBySplit);
 	showSplitArray(compNumList, beginIndex, numCountBySplit);
 
+	int matchIndex = -1;
+	for (int i = 0; beginIndex[i] != -1; i += 1) {
+		if (compareArray(inputNumList, 0, inputNumLength, compNumList, beginIndex[i], numCountBySplit[i])) {
+			matchIndex = i;
+			break;
+		}
+	}
+	printf("match at %d\n", matchIndex);
+
 #ifdef _DEBUG
 	int testA[] = {1, 2};
 	int testB[] = {1, 2};
