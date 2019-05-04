@@ -23,6 +23,14 @@ int main(void)
 		numCountBySplit[i] = -1;
 	}
 
+	// count input array
+	int inputNumLength = 0;
+	for (int i = 0; i < 4; i += 1) {
+		if (inputNumList[i] == -1) {
+			inputNumLength = i;
+			break;
+		}
+	}
     printf("Hello World!\n"); 
 	splitArray(compNumList, beginIndex, numCountBySplit);
 	showSplitArray(compNumList, beginIndex, numCountBySplit);
