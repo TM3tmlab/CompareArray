@@ -30,7 +30,6 @@ int main(void)
 			break;
 		}
 	}
-    printf("Hello World!\n"); 
 	splitArray(compNumList, beginIndex, numCountBySplit);
 	showSplitArray(compNumList, beginIndex, numCountBySplit);
 
