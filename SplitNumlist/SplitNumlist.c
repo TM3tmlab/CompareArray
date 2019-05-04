@@ -5,9 +5,9 @@
 
 #define SPLIT_MAX 100
 
-int compareArray(int[], int, int, int[], int, int);
-void splitArray(int[], int[], int[]);
-void showSplitArray(int[], int[], int[]);
+int compareArray(int*, int, int, int*, int, int);
+void splitArray(int*, int*, int*);
+void showSplitArray(int*, int*, int*);
 
 int main(void)
 {
@@ -53,7 +53,7 @@ int main(void)
 
 }
 
-int compareArray(int aArray[], int aIndex, int aLength, int bArray[], int bIndex, int bLength)
+int compareArray(int* aArray, int aIndex, int aLength, int* bArray, int bIndex, int bLength)
 {
 	if (aLength != bLength) {
 		return 0;
@@ -73,7 +73,7 @@ breakPoint:;
 	return result;
 }
 
-void splitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
+void splitArray(int* compNumList, int* beginIndex, int* numCountBySplit)
 {
 	int current = 0;
 	int index = 0;
@@ -99,7 +99,7 @@ void splitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
 	}
 }
 
-void showSplitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
+void showSplitArray(int* compNumList, int* beginIndex, int* numCountBySplit)
 {
 	for (int i = 0; beginIndex[i] != -1; i += 1) {
 		printf("line no %d : ", i);
