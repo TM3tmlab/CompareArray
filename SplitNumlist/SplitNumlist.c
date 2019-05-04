@@ -28,12 +28,12 @@ int main(void)
 	showSplitArray(compNumList, beginIndex, numCountBySplit);
 
 #ifdef _DEBUG
-	int testA[] = {1};
-	int testB[] = {1};
+	int testA[] = {1, 2};
+	int testB[] = {1, 2};
 	assert(compareArray(testA, 0, 2, testB, 0, 1) == 0);
-	assert(compareArray(testA, 0, 1, testB, 0, 1) == 1);
-	testB[0] = 2;
-	assert(compareArray(testA, 0, 1, testB, 0, 1) == 0);
+	assert(compareArray(testA, 0, 2, testB, 0, 2) == 1);
+	testB[1] = 3;
+	assert(compareArray(testA, 0, 2, testB, 0, 2) == 0);
 #endif // _DEBUG
 
 }
@@ -46,12 +46,10 @@ int compareArray(int aArray[], int aIndex, int aLength, int bArray[], int bIndex
 
 	// '1' mean true. compare correct
 	int result = 1;
-	for (int i = aIndex; i < aLength; i +=1) {
-		for (int j = bIndex; j < bLength; j += 1) {
-			if (aArray[i] != bArray[j]) {
-				result = 0;
-				goto breakPoint;
-			}
+	for (int i = aIndex, j = bIndex; i < aLength; i += 1, j += 1) {
+		if (aArray[i] != bArray[j]) {
+			result = 0;
+			goto breakPoint;
 		}
 	}
 	// label line nop.
