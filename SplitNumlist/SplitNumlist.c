@@ -2,9 +2,11 @@
 //
 
 #include <stdio.h>
+#include <assert.h>
 
 #define SPLIT_MAX 100
 
+int compareArray(int[], int, int, int[], int, int);
 void splitArray(int[], int[], int[]);
 void showSplitArray(int[] , int[] , int[]);
 
@@ -24,6 +26,38 @@ int main(void)
     printf("Hello World!\n"); 
 	splitArray(compNumList, beginIndex, numCountBySplit);
 	showSplitArray(compNumList, beginIndex, numCountBySplit);
+
+#ifdef _DEBUG
+	int testA[] = {1};
+	int testB[] = {1};
+	assert(compareArray(testA, 0, 2, testB, 0, 1) == 0);
+	assert(compareArray(testA, 0, 1, testB, 0, 1) == 1);
+	testB[0] = 2;
+	assert(compareArray(testA, 0, 1, testB, 0, 1) == 0);
+#endif // _DEBUG
+
+}
+
+int compareArray(int aArray[], int aIndex, int aLength, int bArray[], int bIndex, int bLength)
+{
+	if (aLength != bLength) {
+		return 0;
+	}
+
+	// '1' mean true. compare correct
+	int result = 1;
+	for (int i = aIndex; i < aLength; i +=1) {
+		for (int j = bIndex; j < bLength; j += 1) {
+			if (aArray[i] != bArray[j]) {
+				result = 0;
+				goto breakPoint;
+			}
+		}
+	}
+	// label line nop.
+breakPoint:;
+
+	return result;
 }
 
 void splitArray(int compNumList[], int beginIndex[], int numCountBySplit[])
